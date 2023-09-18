@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 public class ContactsPage extends BasePage {
     public ContactsPage(WebDriver driver) {super(driver);}
 
+    // здесь мы пишем селекторы для вебэлементов
+
     @FindBy(id = "langSelect")
     private WebElement contactsPage;
     @FindBy(css = "a.nav-link[href='/contacts']")
@@ -29,7 +31,7 @@ public class ContactsPage extends BasePage {
     @FindBy(css = "img[src='/assets/icons/trash.svg']")
     private WebElement deleteButton;
 
-
+    // метод который проверяет отображение страницы Контактов
     public boolean contactsPageIsDisplayed() {
         try {
             contactsPage.isDisplayed();
