@@ -7,16 +7,7 @@ public class ContactInfoPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(id = "langSelect")
-    private WebElement contactsPage;
-    @FindBy(css = "a.nav-link[href='/contacts']")
-    private WebElement addNewContact;
-    @FindBy(id = "form-name")
-    private WebElement firstNameInputField;
-    @FindBy(id = "form-lastName")
-    private WebElement lastNameInputField;
-    @FindBy(id = "form-about")
-    private WebElement aboutInputField;
+
     @FindBy(css = "button.btn.btn-primary")
     private WebElement saveButton;
     @FindBy(css = "h5")
