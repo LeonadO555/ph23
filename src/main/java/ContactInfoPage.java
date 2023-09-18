@@ -1,3 +1,4 @@
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,5 +30,13 @@ public class ContactInfoPage extends BasePage{
     @FindBy(css = "img[src='/assets/icons/trash.svg']")
     private WebElement deleteButton;
 
-
+    public boolean contactsPageIsDisplayed() {
+        try {
+            contactsPage.isDisplayed();
+            return true;
+        }
+        catch (NoSuchElementException e){
+            return false;
+        }
+    }
 }
