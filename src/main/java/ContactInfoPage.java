@@ -30,13 +30,14 @@ public class ContactInfoPage extends BasePage{
     @FindBy(css = "img[src='/assets/icons/trash.svg']")
     private WebElement deleteButton;
 
-    public boolean contactsPageIsDisplayed() {
-        try {
-            contactsPage.isDisplayed();
-            return true;
-        }
-        catch (NoSuchElementException e){
-            return false;
-        }
-    }
+////
+//    public boolean contactsPageIsDisplayed() {
+//        try {
+//            contactsPage.isDisplayed();
+//            return true;
+//        }
+//        catch (NoSuchElementException e){
+//            return false;
+//        }
+//    }
 }
