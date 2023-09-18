@@ -1,12 +1,14 @@
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ContactInfoPage extends BasePage {
-        public ContactInfoPage(WebDriver driver){
-            super(driver);
+    public ContactInfoPage(WebDriver driver) {
+        super(driver);
 
-        }
+    }
+
     @FindBy(id = "")
     private WebElement contactsPage;
     @FindBy(css = "")
@@ -30,4 +32,13 @@ public class ContactInfoPage extends BasePage {
     @FindBy(css = "i ")
     private WebElement deleteButton;
 
+    public boolean contactsPageIsDisplayed() {
+        try {
+            contactsPage.isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+
+        }
+    }
 }
