@@ -7,10 +7,8 @@ public class AddContactTest extends BaseTest {
 
     @Test
     public void AddContactTest() {
-        LoginPage loginPage = new LoginPage(app.driver);
-        loginPage.enterEmail("test@gmail.com");
-        loginPage.enterPassword("test@gmail.com");
-        loginPage.clickOnLoginButton();
+        LoginHelper loginHelper = new LoginHelper(app.driver);
+        loginHelper.loginTestHelper();
 
         ContactsPage contactsPage = new ContactsPage(app.driver);
         assertTrue(contactsPage.contactsPageIsDisplayed());
