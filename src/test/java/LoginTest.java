@@ -17,6 +17,12 @@ public class LoginTest extends BaseTest {
         ContactsPage contactsPage = new ContactsPage(app.driver);
         sleep(1000);
         assertTrue(contactsPage.contactsPageIsDisplayed());
+        contactsPage.clickButtonAddNewContact();
+        assertTrue(contactsPage.modalWindowIsDisplayed());
+
+
+
+
     }
     @Test
     public void invalidEmail() throws InterruptedException {
