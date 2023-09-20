@@ -1,42 +1,61 @@
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
+import java.time.Duration;
+
+
 public class ContactsPage extends BasePage {
-    public ContactsPage(WebDriver driver) {super(driver);}
+    public ContactsPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(id = "langSelect")
     private WebElement contactsPage;
-    @FindBy(css = "a.nav-link[href='/contacts']")
-    private WebElement addNewContact;
-    @FindBy(id = "form-name")
-    private WebElement firstNameInputField;
-    @FindBy(id = "form-lastName")
-    private WebElement lastNameInputField;
-    @FindBy(id = "form-about")
-    private WebElement aboutInputField;
-    @FindBy(css = "button.btn.btn-primary")
-    private WebElement saveButton;
-    @FindBy(css = "h5")
-    private WebElement contactInformationHeader;
-    @FindBy(css = "a.nav-link[routerlink='']")
-    private WebElement contactsList;
-    @FindBy(css = "input[formcontrolname='searchInput']\"")
-    private WebElement searchInputForm;
-    @FindBy(css = "b")
-    private WebElement foundContact;
+
+    @FindBy(css = "[class=\"nav-tabs bg-secondary text-white d-flex align-items-center p-2 nav\"]")
+    private WebElement contactsListElement;
+
+    @FindBy(id= "input-search-contact")
+    private WebElement searchInputField;
+
+    @FindBy(xpath = "(//div[@id=\"contacts-list\"]//b)[1]")
+    private WebElement newContatNameFromContactsList;
+
+    @FindBy(xpath = "(//div[@id=\"contacts-list\"]//button)[1]")
+    private WebElement confirmationNewContactLink;
+
     @FindBy(css = "img[src='/assets/icons/trash.svg']")
     private WebElement deleteButton;
 
+    @FindBy(xpath = "//*[@class='alert text-center alert-warning']")
+    private WebElement alertNoResults;
 
-    public boolean contactsPageIsDisplayed() {
-        try {
-            contactsPage.isDisplayed();
-            return true;
-        }
-        catch (NoSuchElementException e){
-            return false;
-        }
+
+    public String readValueFromNewContact(){
+        return newContatNameFromContactsList.getText();
     }
+
+
+    public boolean isContactsPageDisplayed(){
+        return contactsListElement.isDisplayed();
+    }
+
+    public void searchContact(String expectedText){
+        searchInputField.sendKeys(expectedText);
+    }
+
+    public void clickOnNewContactNameLinkFromContactsList(){
+        confirmationNewContactLink.click();
+    }
+
+    public void deleteContact(){
+        deleteButton.click();
+    }
+
+    public boolean isNoResultsDisplayed(){
+        return alertNoResults.isDisplayed();
+    }
+
 }

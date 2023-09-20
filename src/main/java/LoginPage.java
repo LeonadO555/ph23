@@ -18,13 +18,12 @@ public class LoginPage extends BasePage {
     @FindBy(id = "error-message")
     private WebElement errorMessage;
 
-    public void enterEmail(String emailValue) {emailInputField.sendKeys(emailValue);}
-    public void enterPassword(String passValue) {
-        passInputField.sendKeys(passValue);
-    }
-    public void clickOnLoginButton() {
+    public void login (String emailValue, String passwordValue) {
+        emailInputField.sendKeys(emailValue);
+        passInputField.sendKeys(passwordValue);
         loginButton.click();
     }
+
 
 
     public boolean errorMessageHasText(String expectedText){
