@@ -19,8 +19,7 @@ public class LoginPage extends BasePage {
     private WebElement errorMessage;
 
     public void enterEmail(String emailValue) {emailInputField.sendKeys(emailValue);}
-    public void enterPassword(String passValue) {
-        passInputField.sendKeys(passValue);
+    public void enterPassword(String passValue) {passInputField.sendKeys(passValue);
     }
     public void clickOnLoginButton() {
         loginButton.click();

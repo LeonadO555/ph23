@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.time.Duration;
+
 public class ApplicationManager {
     public WebDriver driver;
 
@@ -14,6 +16,7 @@ public class ApplicationManager {
         driver.get("http://phonebook.telran-edu.de:8080/");
 //        driver.manage().window().setSize();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     protected void stop() {
