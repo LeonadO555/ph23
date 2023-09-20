@@ -22,19 +22,22 @@ public class ContactTest extends BaseTest{
         contactAddDialog.setAboutField("Nothing to tell");
         contactAddDialog.clickOnSaveButton();
         contactAddDialog.contactInformationHeaderIsDisplayed();
+        //sleep(1000);
         assertTrue(contactAddDialog.firstNameHasText("Anton7777"));
         assertTrue(contactAddDialog.lastNameHasText("Ojjjjj"));
         assertTrue(contactAddDialog.aboutFieldHasText("Nothing to tell"));
 
         contactsPage.clickOnEditContact();
         contactsPage.clickOnEditContactDescriptionField();
-        contactsPage.updateAboutField(". Nothing new");
+        contactsPage.clearDescriptionField();
+        contactsPage.updateAboutField("Nothing new");
         contactsPage.clickOnSaveButtonInEditContact();
         contactsPage.clickOnContactsBtn();
         contactsPage.clickOnSearchForm();
         contactsPage.enterInSearchField("Anton7777");
         contactsPage.deleteContact("Anton7777");
-        contactsPage.clickOnDeleteCheckbox();
-        contactsPage.clickOnSubmitDeletingBtn();
+        DeleteContactDialog deleteContactDialog = new DeleteContactDialog(app.driver);
+        deleteContactDialog.clickOnDeleteCheckbox();
+        deleteContactDialog.clickOnSubmitDeletingBtn();
     }
 }

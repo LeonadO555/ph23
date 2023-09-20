@@ -8,7 +8,6 @@ public class LoginPage extends BasePage {
     @FindBy(id = "defaultRegisterFormEmail")
     private WebElement emailInputField;
 
-
     @FindBy(css = "input[formcontrolname='password']")
     private WebElement passInputField;
 
@@ -25,8 +24,6 @@ public class LoginPage extends BasePage {
     public void clickOnLoginButton() {
         loginButton.click();
     }
-
-
     public boolean errorMessageHasText(String expectedText){
         return errorMessage.getText().contains(expectedText);
     }

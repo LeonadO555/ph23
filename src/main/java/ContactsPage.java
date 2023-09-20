@@ -27,16 +27,11 @@ public class ContactsPage extends BasePage {
     @FindBy(id = "input-search-contact")
     private WebElement searchInputForm;
 
-    @FindBy(css = "img[src='/assets/icons/trash.svg']")
-    private WebElement deleteButton;
 
-    @FindBy(id = "check-box-remove-contact")
-    private WebElement deleteCheckbox;
-
-    @FindBy(id = "submit-remove")
-    private WebElement submitDeleting;
 
     public void clickOnEditContact() {editContactButton.click();}
+
+    public void clearDescriptionField() {editContactDescription.clear();}
 
     public void clickOnEditContactDescriptionField() {editContactDescription.click();}
 
@@ -54,13 +49,7 @@ public class ContactsPage extends BasePage {
         searchInputForm.click();
     }
 
-    public void clickOnDeleteCheckbox(){
-        deleteCheckbox.click();
-    }
 
-    public void clickOnSubmitDeletingBtn(){
-        submitDeleting.click();
-    }
 
     public void enterInSearchField(String searchValue) {searchInputForm.sendKeys(searchValue);}
 

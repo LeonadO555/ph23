@@ -17,7 +17,6 @@ public class ContactAddDialog extends BasePage{
     @FindBy(id = "form-lastName")
     private WebElement lastNameInputField;
 
-
     @FindBy(id = "form-about")
     private WebElement aboutInputField;
 
@@ -36,31 +35,24 @@ public class ContactAddDialog extends BasePage{
     @FindBy(id = "contact-description")
     private WebElement aboutField;
 
-
-
     public void clickOnAddNewContactButton(){
         addNewContact.click();
     }
     public void setEnterFirstName(String firstNameValue) {
         firstNameInputField.sendKeys(firstNameValue);
     }
-
     public void setEnterLastName(String lastNameValue) {
         lastNameInputField.sendKeys(lastNameValue);
     }
-
     public void setAboutField(String aboutFieldValue) {
         aboutInputField.sendKeys(aboutFieldValue);
     }
-
     public void clickOnSaveButton(){
         saveButton.click();
     }
-
     public boolean contactInformationHeaderIsDisplayed(){
         return contactInformationHeader.isDisplayed();
     }
-
     public boolean firstNameHasText(String expectedText){
         return contactFirstName.getText().contains(expectedText);
     }
