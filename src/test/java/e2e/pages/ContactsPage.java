@@ -1,12 +1,11 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-import java.time.Duration;
-
-
-public class ContactsPage extends BasePage {
+public class ContactsPage extends Header {
     public ContactsPage(WebDriver driver) {
         super(driver);
     }

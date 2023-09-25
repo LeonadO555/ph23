@@ -1,3 +1,5 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +10,6 @@ public class LoginPage extends BasePage {
     @FindBy(id = "defaultRegisterFormEmail")
     private WebElement emailInputField;
 
-
     @FindBy(css = "input[formcontrolname='password']")
     private WebElement passInputField;
 
@@ -17,6 +18,12 @@ public class LoginPage extends BasePage {
 
     @FindBy(id = "error-message")
     private WebElement errorMessage;
+
+    public void waitForLoading(){
+        getWait().forVisibility(emailInputField);
+        getWait().forVisibility(passInputField);
+        getWait().forVisibility(loginButton);
+    }
 
     public void login (String emailValue, String passwordValue) {
         emailInputField.sendKeys(emailValue);

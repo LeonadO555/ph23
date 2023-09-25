@@ -1,3 +1,5 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -5,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactInfoPage extends BasePage {
+public class ContactInfoPage extends Header {
     public ContactInfoPage(WebDriver driver) {
         super(driver);
     }

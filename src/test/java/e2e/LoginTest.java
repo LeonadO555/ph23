@@ -1,3 +1,8 @@
+package e2e;
+
+import e2e.pages.Header;
+import e2e.pages.LoginHelper;
+import e2e.pages.LoginPage;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -5,24 +10,26 @@ import static org.junit.Assert.assertTrue;
 
 
 public class LoginTest extends BaseTest {
-   @org.testng.annotations.Test
+    LoginPage loginPage;
+    LoginHelper loginHelper;
+    @Test
     public void successLogin() {
-        LoginPage loginPage = new LoginPage(app.driver);
-        loginPage.login("test@gmail.com", "test@gmail.com");
-        HeaderPage header = new HeaderPage(app.driver);
-        assertTrue(header.isHeaderPresent());
+        loginHelper = new LoginHelper(app.driver);
+        loginHelper.loginTestHelper();
     }
 
     @Test
     public void invalidEmail()  {
-        LoginPage loginPage = new LoginPage(app.driver);
+        loginPage = new LoginPage(app.driver);
+        loginPage.waitForLoading();
         loginPage.login("tttt@gmail.com", "test@gmail.com");
         assertTrue(loginPage.errorMessageHasText( "Please check your activation or Login + Password combination"));
     }
 
     @Test
-    public void invalidPass() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(app.driver);
+    public void invalidPass() {
+        loginPage = new LoginPage(app.driver);
+        loginPage.waitForLoading();
         loginPage.login("test@gmail.com", "tttt@gmail.com");
         assertTrue(loginPage.errorMessageHasText( "Please check your activation or Login + Password combination"));
     }
