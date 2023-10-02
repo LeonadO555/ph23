@@ -36,6 +36,7 @@ public class AddNewPhoneNumberDialog extends Header{
         getWait().forInvisibility(dialog);
     }
 
+
     public void selectCountryCode(){
         germanyCode.click();
     }
