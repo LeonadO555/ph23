@@ -1,13 +1,18 @@
+package e2e.dialog;
+
+import e2e.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ContactAddDialog extends BasePage{
+public class ContactAddDialog extends BasePage {
 
     public ContactAddDialog(WebDriver driver) {
         super(driver);
     }
 
+    @FindBy(xpath = "//*[@role='dialog']")
+    private WebElement dialog;
     @FindBy(css = "a.nav-link[href='/contacts']")
     private WebElement addNewContact;
 
@@ -34,6 +39,15 @@ public class ContactAddDialog extends BasePage{
 
     @FindBy(id = "contact-description")
     private WebElement aboutField;
+
+    public void waitForLoading(){
+        getWait().forVisibility(dialog);
+        getWait().forClickable(saveButton);
+    }
+
+    public void waitForClosed(){
+        getWait().forInvisibility(dialog);
+    }
 
     public void clickOnAddNewContactButton(){
         addNewContact.click();
