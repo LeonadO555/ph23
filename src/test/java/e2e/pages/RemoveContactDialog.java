@@ -9,22 +9,30 @@ public class RemoveContactDialog extends BasePage {
         super(driver);
     }
 
+    @FindBy(xpath = "//*[@role='dialog']")
+    private WebElement dialog;
     @FindBy(id= "check-box-remove-contact")
-    private WebElement checkboxDelitionConfirm;
+    private WebElement confirmCheckbox;
 
     @FindBy(id= "submit-remove")
     private WebElement removeContactButton;
 
+    public void waitForLoading(){
+        getWait().forVisibility(dialog);
+        getWait().forVisibility(confirmCheckbox);
+        getWait().forVisibility(removeContactButton);
+    }
+
 
     public void clickCheckbox(){
-        checkboxDelitionConfirm.click();
+        confirmCheckbox.click();
     }
 
     public void clickOnRemoveContactButton(){
         removeContactButton.click();
     }
 
-    public boolean isCheckBoxIsDisplayed(){
-       return checkboxDelitionConfirm.isDisplayed();
+    public void waitForClosed(){
+        getWait().forInvisibility(dialog);
     }
 }

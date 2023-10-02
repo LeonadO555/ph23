@@ -3,7 +3,7 @@ package e2e;
 import e2e.pages.Header;
 import e2e.pages.LoginHelper;
 import e2e.pages.LoginPage;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static org.junit.Assert.assertTrue;
 
