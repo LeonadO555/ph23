@@ -1,12 +1,11 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-import java.time.Duration;
-
-
-public class ContactsPage extends BasePage {
+public class ContactsPage extends Header {
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
@@ -30,17 +29,18 @@ public class ContactsPage extends BasePage {
     private WebElement deleteButton;
 
     @FindBy(xpath = "//*[@class='alert text-center alert-warning']")
-    private WebElement alertNoResults;
+    private WebElement noResultMessage;
 
+
+    public void waitForLoading(){
+        getWait().forVisibility(contactsListElement);
+        getWait().forVisibility(searchInputField);
+    }
 
     public String readValueFromNewContact(){
         return newContatNameFromContactsList.getText();
     }
 
-
-    public boolean isContactsPageDisplayed(){
-        return contactsListElement.isDisplayed();
-    }
 
     public void searchContact(String expectedText){
         searchInputField.sendKeys(expectedText);
@@ -55,7 +55,7 @@ public class ContactsPage extends BasePage {
     }
 
     public boolean isNoResultsDisplayed(){
-        return alertNoResults.isDisplayed();
+        return noResultMessage.isDisplayed();
     }
 
 }

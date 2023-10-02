@@ -1,9 +1,11 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HeaderPage extends BasePage {
-    public HeaderPage(WebDriver driver) {
+public class Header extends BasePage {
+    public Header(WebDriver driver) {
         super(driver);
     }
 
@@ -17,6 +19,11 @@ public class HeaderPage extends BasePage {
     @FindBy(css = "a.nav-link[href='/contacts']")
     private WebElement addNewContactLink;
 
+
+    public void waitForLoading(){
+        getWait().forVisibility(header);
+        getWait().forVisibility(addNewContactLink);
+    }
 
 
     public boolean isHeaderPresent() {

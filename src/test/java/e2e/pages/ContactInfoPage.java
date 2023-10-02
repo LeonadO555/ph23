@@ -1,3 +1,5 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -5,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactInfoPage extends BasePage {
+public class ContactInfoPage extends Header {
     public ContactInfoPage(WebDriver driver) {
         super(driver);
     }
@@ -18,8 +20,6 @@ public class ContactInfoPage extends BasePage {
 
     @FindBy(id = "contact-description")
     private WebElement decriptionSaved;
-
-
 
 
     @FindBy(id = "btn-edit-contact")
@@ -37,6 +37,13 @@ public class ContactInfoPage extends BasePage {
     @FindBy(css= "[class=\"btn btn-primary submit-btn-ec\"]")
     private WebElement saveButton;
 
+
+    public void waitForLoading(){
+       // getWait().forVisibility(firstNameInputField);
+       // getWait().forVisibility(lastNameInputField);
+      //  getWait().forVisibility(contactDescription);
+        getWait().forVisibility(editButton);
+    }
 
 
 
