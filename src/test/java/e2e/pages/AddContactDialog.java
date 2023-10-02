@@ -10,8 +10,8 @@ public class AddContactDialog extends BasePage {
         super(driver);
     }
 
-
-
+    @FindBy(xpath = "//*[@role='dialog']")
+    private WebElement dialog;
     @FindBy(id = "form-name")
     private WebElement firstNameInputField;
     @FindBy(id = "form-lastName")
@@ -21,6 +21,10 @@ public class AddContactDialog extends BasePage {
     @FindBy(css = "button.btn.btn-primary")
     private WebElement saveButton;
 
+    public void waitForLoading(){
+        getWait().forVisibility(dialog);
+        getWait().forVisibility(saveButton);
+    }
 
 
     public void inputInfoForSaving(String expectedFirstName, String expectedLastName, String contactDescription) {
@@ -33,5 +37,7 @@ public class AddContactDialog extends BasePage {
         saveButton.click();
     }
 
-
+    public void waitForClosed(){
+        getWait().forInvisibility(dialog);
+    }
 }

@@ -29,17 +29,18 @@ public class ContactsPage extends Header {
     private WebElement deleteButton;
 
     @FindBy(xpath = "//*[@class='alert text-center alert-warning']")
-    private WebElement alertNoResults;
+    private WebElement noResultMessage;
+
+    public void waitForLoading(){
+        getWait().forVisibility(searchInputField);
+        getWait().forVisibility(contactsListElement);
+    }
 
 
     public String readValueFromNewContact(){
         return newContatNameFromContactsList.getText();
     }
 
-
-    public boolean isContactsPageDisplayed(){
-        return contactsListElement.isDisplayed();
-    }
 
     public void searchContact(String expectedText){
         searchInputField.sendKeys(expectedText);
@@ -54,7 +55,7 @@ public class ContactsPage extends Header {
     }
 
     public boolean isNoResultsDisplayed(){
-        return alertNoResults.isDisplayed();
+        return noResultMessage.isDisplayed();
     }
 
 }

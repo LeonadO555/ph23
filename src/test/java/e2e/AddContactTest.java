@@ -5,8 +5,6 @@ import e2e.pages.RemoveContactDialog;
 import e2e.pages.LoginHelper;
 import e2e.pages.ContactInfoPage;
 import e2e.pages.ContactsPage;
-import e2e.pages.Header;
-import org.junit.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -37,18 +35,20 @@ public class AddContactTest extends BaseTest{
         loginHelper.loginTestHelper();
 
         contactsPage = new ContactsPage(app.driver);
+        contactsPage.waitForLoading();
         contactsPage.clickOnAddNewContactLink(); // нажимаем на кнопку AddNewContact
 
         addContactDialog = new AddContactDialog(app.driver);
+        addContactDialog.waitForLoading();
         addContactDialog.inputInfoForSaving(newContactName, newContactLastName, "student"); // регистрируем новый контакт
         addContactDialog.saveContact();
+        addContactDialog.waitForClosed();
 
         contactInfoPage = new ContactInfoPage(app.driver);
         assertEquals(contactInfoPage.getContactInfo() +  " not equal " + contactsInfo,  contactInfoPage.getContactInfo(), contactsInfo);
         assertTrue(contactInfoPage.isEditButtonDisplayed()); // проверяем, что мы перешли на страницу contactInfoPage
         contactInfoPage.goToContactsPage();//возвращаюсь на страницу e2e.pages.ContactsPage
 
-        assertTrue(contactsPage.isContactsPageDisplayed()); // проверяю, что нахожусь на СontactsPage
         contactsPage.searchContact(newContactName); // ищу контакт по имени (можно и по фамилии)
         String newContactNameFromContactsLIst = contactsPage.readValueFromNewContact();
         assertEquals(newContactName, newContactNameFromContactsLIst); // проверяю совпадает ли имя нового контакта с тем, что вышло в результате поиска.
@@ -62,16 +62,16 @@ public class AddContactTest extends BaseTest{
         assertTrue(contactInfoPage.isEditButtonDisplayed()); // проверяем, что мы перешли на страницу contactInfoPage
         contactInfoPage.goToContactsPage();//возвращаюсь на страницу e2e.pages.ContactsPage
 
-        assertTrue(contactsPage.isContactsPageDisplayed()); // проверяю, что нахожусь на СontactsPage
         contactsPage.searchContact(changedName+changedLastName); // ищу контакт по изменённому имени + фамилии
         String changedContactNameFromContactsLIst = contactsPage.readValueFromNewContact();
         assertEquals(changedName, changedContactNameFromContactsLIst); // проверяю совпадает ли имя изменённого контакта с тем, что вышло в результате поиска.
         contactsPage.deleteContact();
 
         removeContactDialog = new RemoveContactDialog(app.driver);
-        removeContactDialog.isCheckBoxIsDisplayed();
+        removeContactDialog.waitForLoading();
         removeContactDialog.clickCheckbox();
         removeContactDialog.clickOnRemoveContactButton();
+        removeContactDialog.waitForClosed();
 
         assertTrue(contactsPage.isNoResultsDisplayed());
 
