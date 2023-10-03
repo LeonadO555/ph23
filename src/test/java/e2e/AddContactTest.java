@@ -37,7 +37,7 @@ public class AddContactTest extends BaseTest {
 
         contactsPage = new ContactsPage(BaseTest.app.driver);
         contactsPage.waitForLoading();
-        contactsPage.clickOnAddNewContactLink(); // нажимаем на кнопку AddNewContact
+        contactsPage.clickAddNewContactLink();
 
         addContactDialog = new AddContactDialog(BaseTest.app.driver);
         addContactDialog.waitForLoading();

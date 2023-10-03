@@ -1,5 +1,6 @@
 package e2e;
 
+import e2e.pages.LoginHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,5 +25,6 @@ public class ApplicationManager {
     protected void stop() {
         driver.quit();
     }
+
 
 }

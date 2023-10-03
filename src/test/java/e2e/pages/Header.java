@@ -30,7 +30,7 @@ public class Header extends BasePage {
         return header.isDisplayed();
     }
 
-    public void clickOnAddNewContactLink(){
+    public void clickAddNewContactLink(){
         addNewContactLink.click();
     }
 

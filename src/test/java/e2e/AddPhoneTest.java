@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 
-public class AddPhoneTest extends BaseTest{
+public class AddPhoneTest extends BaseTest {
     LoginHelper loginHelper;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
@@ -18,36 +18,36 @@ public class AddPhoneTest extends BaseTest{
     PhonesPage phonesPage;
     AddNewPhoneNumberDialog addNewPhoneNumberDialog;
 
-@Test
-    public void successAddPhone(){
+    @Test
+    public void successAddPhone() {
         String newContactName = "Contato";
         String newContactLastName = "Novo";
         String contactDescription = "Sortudo";
         String phoneNumber = "1234123";
         String expectedCode = "+49";
 
-       List<String> contactsInfo = new ArrayList<>();
-       contactsInfo.add("Contato");
-       contactsInfo.add("Novo");
-       contactsInfo.add("Sortudo");
-
+        List<String> contactsInfo = new ArrayList<>();
+        contactsInfo.add("Contato");
+        contactsInfo.add("Novo");
+        contactsInfo.add("Sortudo");
 
         loginHelper = new LoginHelper(BaseTest.app.driver);
         loginHelper.loginTestHelper();
 
         contactsPage = new ContactsPage(BaseTest.app.driver);
         contactsPage.waitForLoading();
-        contactsPage.clickOnAddNewContactLink(); // нажимаем на кнопку AddNewContact
+        contactsPage.clickAddNewContactLink();
 
         addContactDialog = new AddContactDialog(BaseTest.app.driver);
         addContactDialog.waitForLoading();
-        addContactDialog.inputInfoForSaving(newContactName, newContactLastName, contactDescription); // регистрируем новый контакт
+        addContactDialog.inputInfoForSaving(newContactName, newContactLastName, contactDescription);
         addContactDialog.saveContact();
         addContactDialog.waitForClose();
 
         contactInfoPage = new ContactInfoPage(app.driver);
-        Assert.assertEquals(contactInfoPage.getContactInfo() + " not equal " + contactsInfo, contactInfoPage.getContactInfo(), contactsInfo);
         contactInfoPage.waitForLoading();
+        Assert.assertEquals(contactInfoPage.getContactInfo() + " not equal " + contactsInfo, contactInfoPage.getContactInfo(), contactsInfo);
+
 
         phonesPage = new PhonesPage(app.driver);
         phonesPage.clickPhoneTab();
@@ -60,6 +60,8 @@ public class AddPhoneTest extends BaseTest{
         addNewPhoneNumberDialog.enterPhoneNumber(phoneNumber);
         addNewPhoneNumberDialog.savePhoneNumber();
         addNewPhoneNumberDialog.waitForClose();
+
+        phonesPage.waitForLoading();
         assertTrue(phonesPage.isPhoneCode(expectedCode));
         assertTrue(phonesPage.isPhoneNumber(phoneNumber));
     }
