@@ -1,16 +1,21 @@
 package e2e.pages;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import util.Wait;
+
 
 public class LoginPage extends BasePage {
-    public LoginPage(WebDriver driver) {super(driver);}
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(id = "defaultRegisterFormEmail")
     private WebElement emailInputField;
 
-    @FindBy(css = "input[formcontrolname='password']")
+    @FindBy(xpath = "//*[@formcontrolname='password']")
     private WebElement passInputField;
 
     @FindBy(css = "button[type='submit']")
@@ -20,16 +25,14 @@ public class LoginPage extends BasePage {
     private WebElement errorMessage;
 
     public void waitForLoading(){
-       getWait().forVisibility(emailInputField);
-       getWait().forVisibility(passInputField);
-       getWait().forVisibility(loginButton);
+        getWait().forVisibility(emailInputField);
+        getWait().forVisibility(passInputField);
+        getWait().forVisibility(loginButton);
     }
 
-    public void enterEmail(String emailValue) {emailInputField.sendKeys(emailValue);}
-    public void enterPassword(String passValue) {
-        passInputField.sendKeys(passValue);
-    }
-    public void clickOnLoginButton() {
+    public void login (String emailValue, String passwordValue) {
+        emailInputField.sendKeys(emailValue);
+        passInputField.sendKeys(passwordValue);
         loginButton.click();
     }
     public boolean errorMessageHasText(String expectedText){
