@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AddContactTest extends BaseTest {
     LoginHelper loginHelper;
+    Header header;
     ContactsPage contactsPage;
     AddContactDialog addContactDialog;
     ContactInfoPage contactInfoPage;
@@ -21,16 +22,16 @@ public class AddContactTest extends BaseTest {
 
     @Test
     public void addContactTest() {
-        String newContactName = "TomTom";
-        String newContactLastName = "MotMot";
+        String newContactName = "AvBre";
+        String newContactLastName = "MoTo";
 
         List<String> contactsInfo = new ArrayList<>();
-        contactsInfo.add("TomTom");
-        contactsInfo.add("MotMot");
+        contactsInfo.add("Av");
+        contactsInfo.add("Mo");
         contactsInfo.add("student");
 
-        String changedName = "Tom";
-        String changedLastName = "Mot";
+        String changedName = "Bre";
+        String changedLastName = "To";
 
         loginHelper = new LoginHelper(BaseTest.app.driver);
         loginHelper.loginTestHelper();
@@ -66,7 +67,8 @@ public class AddContactTest extends BaseTest {
         contactInfoPage.editLastName(changedLastName); // меняю фамилию
         contactInfoPage.clickOnSaveButton(); // сохраняю изменения
         assertTrue(contactInfoPage.isEditButtonDisplayed()); // проверяем, что мы перешли на страницу contactInfoPage
-        contactInfoPage.goToContactsPage();//возвращаюсь на страницу e2e.AddContactTest.ContactsPage
+        header=new Header(app.driver);
+        header.goToContactsPage();//возвращаюсь на страницу e2e.AddContactTest.ContactsPage
 
         contactsPage.waitForLoading();
         contactsPage.searchContact(changedName + changedLastName); // ищу контакт по изменённому имени + фамилии

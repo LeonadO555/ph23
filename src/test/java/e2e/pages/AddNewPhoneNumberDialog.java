@@ -26,25 +26,19 @@ public class AddNewPhoneNumberDialog extends Header{
     @FindBy(css = "[class='btn btn-primary']")
     private WebElement phoneSaveButton;
 
-
     public void waitForLoading(){
         getWait().forVisibility(dialog);
         getWait().forVisibility(phoneSaveButton);
     }
-
     public void waitForClose(){
         getWait().forInvisibility(dialog);
     }
-
-
     public void selectCountryCode(){
         germanyCode.click();
     }
-
     public void enterPhoneNumber(String phoneNumber){
         phoneNumberInput.sendKeys(phoneNumber);
     }
-
     public void savePhoneNumber(){
         phoneSaveButton.click();
     }

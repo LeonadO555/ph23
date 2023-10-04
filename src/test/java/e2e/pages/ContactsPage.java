@@ -36,7 +36,6 @@ public class ContactsPage extends Header {
         getWait().forVisibility(contactsListElement);
         getWait().forVisibility(searchInputField);
     }
-
     public String readValueFromNewContact(){
         return newContatNameFromContactsList.getText();
     }

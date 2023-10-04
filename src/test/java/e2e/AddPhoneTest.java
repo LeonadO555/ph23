@@ -20,16 +20,16 @@ public class AddPhoneTest extends BaseTest {
 
     @Test
     public void successAddPhone() {
-        String newContactName = "Contato";
-        String newContactLastName = "Novo";
-        String contactDescription = "Sortudo";
-        String phoneNumber = "1234123";
+        String newContactName = "Conto";
+        String newContactLastName = "Norm";
+        String contactDescription = "SudoK";
+        String phoneNumber = "1298123";
         String expectedCode = "+49";
 
         List<String> contactsInfo = new ArrayList<>();
-        contactsInfo.add("Contato");
-        contactsInfo.add("Novo");
-        contactsInfo.add("Sortudo");
+        contactsInfo.add("Conto");
+        contactsInfo.add("Norm");
+        contactsInfo.add("SudoK");
 
         loginHelper = new LoginHelper(BaseTest.app.driver);
         loginHelper.loginTestHelper();

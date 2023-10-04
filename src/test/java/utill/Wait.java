@@ -10,7 +10,6 @@ import java.time.Duration;
 import java.util.List;
 
 
-
 public class Wait {
     public WebDriver driver;
     Duration TIMEOUT = Duration.ofSeconds(10);
@@ -56,8 +55,4 @@ public class Wait {
             throw new TimeoutException("Waiting for clickable: " + element + "more than " + TIMEOUT + "seconds");
         }
     }
-
-
-
-
 }
