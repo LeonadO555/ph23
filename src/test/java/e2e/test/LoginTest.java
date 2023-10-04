@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword("test@gmail.com");
         loginPage.clickOnLoginButton();
         ContactsPage contactsPage = new ContactsPage(app.driver);
-        sleep(1000);
+
         assertTrue(contactsPage.contactsPageIsDisplayed());
     }
     @Test
@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword("test@gmail.com");
         loginPage.clickOnLoginButton();
         ContactsPage contactsPage = new ContactsPage(app.driver);
-        sleep(1000);
+
         assertFalse(contactsPage.contactsPageIsDisplayed());
         assertTrue(loginPage.errorMessageHasText(
                 "Please check your activation or Login + Password combination"));
@@ -45,7 +45,7 @@ public class LoginTest extends BaseTest {
         loginPage.enterPassword("bullshit@gmail.com");
         loginPage.clickOnLoginButton();
         ContactsPage contactsPage = new ContactsPage(app.driver);
-        sleep(1000);
+
         assertFalse(contactsPage.contactsPageIsDisplayed());
         assertTrue(loginPage.errorMessageHasText(
                 "Please check your activation or Login + Password combination"));
