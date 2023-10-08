@@ -1,3 +1,6 @@
+package e2e.test;
+
+import e2e.test.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

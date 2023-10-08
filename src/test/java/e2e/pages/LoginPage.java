@@ -1,9 +1,13 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    public LoginPage(WebDriver driver) {super(driver);}
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(id = "defaultRegisterFormEmail")
     private WebElement emailInputField;
@@ -18,16 +22,31 @@ public class LoginPage extends BasePage {
     @FindBy(id = "error-message")
     private WebElement errorMessage;
 
-    public void enterEmail(String emailValue) {emailInputField.sendKeys(emailValue);}
+    public void waitForLoading() {
+        getWait().forVisibility(emailInputField);
+        getWait().forVisibility(passInputField);
+        getWait().forVisibility(loginButton);
+
+    }
+
+    public void enterEmail(String emailValue) {
+
+        emailInputField.sendKeys(emailValue);
+    }
+
     public void enterPassword(String passValue) {
+
         passInputField.sendKeys(passValue);
     }
+
     public void clickOnLoginButton() {
+
         loginButton.click();
     }
 
 
-    public boolean errorMessageHasText(String expectedText){
+    public boolean errorMessageHasText(String expectedText) {
+
         return errorMessage.getText().contains(expectedText);
     }
 }
