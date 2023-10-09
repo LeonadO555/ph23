@@ -6,13 +6,12 @@ import util.Wait;
 
 public class BasePage {
     WebDriver driver;
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public Wait getWait(){
+    public Wait getWait() {
         return new Wait(driver);
     }
 
