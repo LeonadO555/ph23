@@ -12,7 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class AddPhoneTest extends BaseTest {
     LoginHelper loginHelper;
-    ContactsPage contactsPage;
+    Header header;
+   // ContactsPage contactsPage;
     AddContactDialog addContactDialog;
     ContactInfoPage contactInfoPage;
     PhonesPage phonesPage;
@@ -20,27 +21,30 @@ public class AddPhoneTest extends BaseTest {
 
     @Test
     public void successAddPhone() {
-        String newContactName = "Conto";
+        String newContactFirstName = "Conto";
         String newContactLastName = "Norm";
-        String contactDescription = "SudoK";
+        String newContactDescription = "SudoK";
         String phoneNumber = "1298123";
         String expectedCode = "+49";
 
         List<String> contactsInfo = new ArrayList<>();
-        contactsInfo.add("Conto");
-        contactsInfo.add("Norm");
-        contactsInfo.add("SudoK");
+        contactsInfo.add(newContactFirstName);
+        contactsInfo.add(newContactLastName);
+        contactsInfo.add(newContactDescription);
 
         loginHelper = new LoginHelper(BaseTest.app.driver);
         loginHelper.loginTestHelper();
 
-        contactsPage = new ContactsPage(BaseTest.app.driver);
+        /*contactsPage = new ContactsPage(BaseTest.app.driver);
         contactsPage.waitForLoading();
-        contactsPage.clickAddNewContactLink();
+        contactsPage.clickAddNewContactLink();*/
+        header=new Header(app.driver);
+        header.waitForLoading();
+        header.clickAddNewContactLink();
 
         addContactDialog = new AddContactDialog(BaseTest.app.driver);
         addContactDialog.waitForLoading();
-        addContactDialog.inputInfoForSaving(newContactName, newContactLastName, contactDescription);
+        addContactDialog.inputInfoForSaving(newContactFirstName, newContactLastName, newContactDescription);
         addContactDialog.saveContact();
         addContactDialog.waitForClose();
 
