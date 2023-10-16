@@ -21,9 +21,6 @@ public class ContactInfoPage extends Header {
     @FindBy(id = "contact-description")
     private WebElement decriptionSaved;
 
-
-
-
     @FindBy(id = "btn-edit-contact")
     private WebElement editButton;
 
