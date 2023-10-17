@@ -5,9 +5,11 @@ import api.contact.ContactApi;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import schemas.AddressesDTO;
 import schemas.ContactDTO;
 
+@Test
 public class AddAddressApiTest {
     ContactApi contactApi;
     AddressAPI addressAPI;

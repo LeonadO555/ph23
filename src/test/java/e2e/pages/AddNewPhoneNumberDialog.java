@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class AddNewPhoneNumberDialog extends Header{
+public class AddNewPhoneNumberDialog extends BasePage{
 
     public AddNewPhoneNumberDialog(WebDriver driver) {
         super(driver);
