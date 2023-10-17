@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -16,10 +17,12 @@ public class AddPhoneTest extends BaseTest {
     AddContactDialog addContactDialog;
     ContactInfoPage contactInfoPage;
     PhonesPage phonesPage;
-    AddNewPhoneNumberDialog addNewPhoneNumberDialog;
+    AddPhoneNumberDialog addNewPhoneNumberDialog;
+    Header header;
+    RemoveContactDialog removeContactDialog;
 
     @Test
-    public void successAddPhone() {
+    public void successAddPhoneForNewContact() {
         String newContactName = "Contato";
         String newContactLastName = "Novo";
         String contactDescription = "Sortudo";
@@ -31,14 +34,14 @@ public class AddPhoneTest extends BaseTest {
         contactsInfo.add("Novo");
         contactsInfo.add("Sortudo");
 
-        loginHelper = new LoginHelper(BaseTest.app.driver);
+        loginHelper = new LoginHelper(app.driver);
         loginHelper.loginTestHelper();
 
-        contactsPage = new ContactsPage(BaseTest.app.driver);
+        contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
         contactsPage.clickAddNewContactLink();
 
-        addContactDialog = new AddContactDialog(BaseTest.app.driver);
+        addContactDialog = new AddContactDialog(app.driver);
         addContactDialog.waitForLoading();
         addContactDialog.inputInfoForSaving(newContactName, newContactLastName, contactDescription);
         addContactDialog.saveContact();
@@ -54,7 +57,7 @@ public class AddPhoneTest extends BaseTest {
         phonesPage.waitForLoading();
         phonesPage.clickAddPhoneNumberButton();
 
-        addNewPhoneNumberDialog = new AddNewPhoneNumberDialog(app.driver);
+        addNewPhoneNumberDialog = new AddPhoneNumberDialog(app.driver);
         addNewPhoneNumberDialog.waitForLoading();
         addNewPhoneNumberDialog.selectCountryCode();
         addNewPhoneNumberDialog.enterPhoneNumber(phoneNumber);
@@ -64,6 +67,26 @@ public class AddPhoneTest extends BaseTest {
         phonesPage.waitForLoading();
         assertTrue(phonesPage.isPhoneCode(expectedCode));
         assertTrue(phonesPage.isPhoneNumber(phoneNumber));
+
+        header = new Header(app.driver);
+        header.goToContactsPage();
+
+        contactsPage.waitForLoading();
+        contactsPage.searchContact(newContactName); // ищу контакт по изменённому имени + фамилии
+        String changedContactNameFromContactsLIst = contactsPage.readValueFromNewContact();
+        assertEquals(newContactName, changedContactNameFromContactsLIst); // проверяю, совпадает ли имя изменённого контакта с тем, что вышло в результате поиска.
+        contactsPage.deleteContact();
+
+        removeContactDialog = new RemoveContactDialog(app.driver);
+        removeContactDialog.waitForLoading();
+        removeContactDialog.clickCheckbox();
+        removeContactDialog.clickOnRemoveContactButton();
+        removeContactDialog.waitForClose();
+
+        contactsPage.waitForLoading();
+        assertTrue(contactsPage.isNoResultsDisplayed());
+
+
     }
 
 }

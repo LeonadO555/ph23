@@ -19,6 +19,7 @@ public class AddContactTest extends BaseTest {
     ContactInfoPage contactInfoPage;
     RemoveContactDialog removeContactDialog;
 
+
     @Test
     public void addContactTest() {
         String newContactName = "TomTom";
@@ -32,20 +33,20 @@ public class AddContactTest extends BaseTest {
         String changedName = "Tom";
         String changedLastName = "Mot";
 
-        loginHelper = new LoginHelper(BaseTest.app.driver);
+        loginHelper = new LoginHelper(app.driver);
         loginHelper.loginTestHelper();
 
-        contactsPage = new ContactsPage(BaseTest.app.driver);
+        contactsPage = new ContactsPage(app.driver);
         contactsPage.waitForLoading();
         contactsPage.clickAddNewContactLink();
 
-        addContactDialog = new AddContactDialog(BaseTest.app.driver);
+        addContactDialog = new AddContactDialog(app.driver);
         addContactDialog.waitForLoading();
         addContactDialog.inputInfoForSaving(newContactName, newContactLastName, "student"); // регистрируем новый контакт
         addContactDialog.saveContact();
         addContactDialog.waitForClose();
 
-        contactInfoPage = new ContactInfoPage(BaseTest.app.driver);
+        contactInfoPage = new ContactInfoPage(app.driver);
         contactInfoPage.waitForLoading();
         Assert.assertEquals(contactInfoPage.getContactInfo() + " not equal " + contactsInfo, contactInfoPage.getContactInfo(), contactsInfo);
         // assertTrue(contactInfoPage.isEditButtonDisplayed()); // проверяем, что мы перешли на страницу contactInfoPage
@@ -74,7 +75,7 @@ public class AddContactTest extends BaseTest {
         assertEquals(changedName, changedContactNameFromContactsLIst); // проверяю, совпадает ли имя изменённого контакта с тем, что вышло в результате поиска.
         contactsPage.deleteContact();
 
-        removeContactDialog = new RemoveContactDialog(BaseTest.app.driver);
+        removeContactDialog = new RemoveContactDialog(app.driver);
         removeContactDialog.waitForLoading();
         removeContactDialog.clickCheckbox();
         removeContactDialog.clickOnRemoveContactButton();
@@ -82,6 +83,8 @@ public class AddContactTest extends BaseTest {
 
         contactsPage.waitForLoading();
         assertTrue(contactsPage.isNoResultsDisplayed());
+
+
     }
 
 }

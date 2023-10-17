@@ -12,8 +12,11 @@ public class PhonesPage extends Header {
 
 
 
-    @FindBy(xpath = "(//*[@role=\"tab\"])[2]")
+    @FindBy(css = "[ng-reflect-_id=\"2\"]")
     private WebElement phonesTab;
+
+    @FindBy(css = "[class=\"mt-1 tab-content\"]")
+    private WebElement tabContent;
 
     @FindBy(id = "btn-add-phone")
     private WebElement addPhoneNumberButton;
@@ -27,6 +30,7 @@ public class PhonesPage extends Header {
 
     public void waitForLoading(){
         getWait().forVisibility(addPhoneNumberButton);
+        getWait().forVisibility(tabContent);
     }
 
 
