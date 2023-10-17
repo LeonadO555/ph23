@@ -1,14 +1,18 @@
+package e2e.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddContactDialog extends BasePage{
+public class AddContactDialog extends BasePage {
 
     public AddContactDialog(WebDriver driver) {
         super(driver);
     }
 
 
+    @FindBy(xpath = "//*[@role='dialog']")
+    private WebElement dialog;
 
     @FindBy(id = "form-name")
     private WebElement firstNameInputField;
@@ -20,6 +24,10 @@ public class AddContactDialog extends BasePage{
     private WebElement saveButton;
 
 
+    public void waitForLoading(){
+        getWait().forVisibility(dialog);
+        getWait().forVisibility(saveButton);
+    }
 
     public void inputInfoForSaving(String expectedFirstName, String expectedLastName, String contactDescription) {
         firstNameInputField.sendKeys(expectedFirstName);
@@ -32,4 +40,7 @@ public class AddContactDialog extends BasePage{
     }
 
 
+    public void waitForClose(){
+        getWait().forInvisibility(dialog);
+    }
 }
