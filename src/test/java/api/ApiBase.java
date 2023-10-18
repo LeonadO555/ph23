@@ -28,7 +28,9 @@ public class ApiBase {
                 .extract().response();
         response.then().assertThat().statusCode(responseCode);
         return response;
+
 }
+
     protected Response getRequestWithParam(String endPoint, int responseCode, String paramName, int value){
         Response response = RestAssured.given()
                 .spec(spec)
