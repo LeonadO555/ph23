@@ -68,6 +68,5 @@ public class AddAddressApiTest_2 {
         String expectedMessageAfterDelete = "Error! This contact doesn't exist in our DB";
         Assert.assertEquals(responseFromDelete, expectedMessageAfterDelete);
     }
-
 }
 
