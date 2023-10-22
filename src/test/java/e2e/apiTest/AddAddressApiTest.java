@@ -1,11 +1,9 @@
 package e2e.apiTest;
-
 import api.address.AddressAPI;
 import api.contact.ContactApi;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 
 public class AddAddressApiTest {
     ContactApi contactApi;
@@ -70,11 +68,8 @@ public class AddAddressApiTest {
         String expectedMessageAfterDelete = "Error! This contact doesn't exist in our DB";
         Assert.assertEquals(responseFromDelete, expectedMessageAfterDelete);
     }
+
 }
 
 
-//    public Response createContact(int code){
-//        response = postRequest(ENDPOINT, code, randomRequestBodyForCreateContact());
-//        response.as(AddressesDTO.class);
-//        return response;
-//    }
+
