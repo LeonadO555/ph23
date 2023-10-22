@@ -1,4 +1,4 @@
-package e2e;
+package e2e.apiTest;
 
 import api.contact.ContactApi;
 import io.restassured.path.json.JsonPath;

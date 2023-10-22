@@ -12,13 +12,13 @@ public class ContactApi extends ApiBase {
     Response response;
 
     Faker faker = new Faker();
-    String firstName = faker.internet().uuid();
-    String lastName = faker.internet().uuid();
+    String firstName = faker.name().firstName(); // faker.internet().uuid() - рандомный набор символов
+    String lastName = faker.name().lastName();  // faker.internet().uuid() - рандомный набор символов
     String description = faker.internet().uuid();
 
-    String editFirstName = faker.internet().uuid();
-    String editLastName = faker.internet().uuid();
-    String editDescription = faker.internet().uuid();
+    String editFirstName = faker.name().firstName(); // faker.internet().uuid() - рандомный набор символов
+    String editLastName = faker.name().lastName(); // faker.internet().uuid() - рандомный набор символов
+    String editDescription = faker.internet().uuid(); // faker.internet().uuid() - рандомный набор символов
 
     // int number = faker.number().numberBetween(1,9);
     public ContactDTO randomRequestBodyForCreateContact(){

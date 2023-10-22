@@ -10,13 +10,11 @@ import schemas.ContactDTO;
 public class AddressAPI extends ApiBase {
     /*
 
-
     @JsonProperty("contactId")
     private int contactId;
      */
     String ENDPOINT = "/api/address";
     AddressesDTO dto;
-
 
     Response response;
 
@@ -34,12 +32,13 @@ public class AddressAPI extends ApiBase {
 
 
     // int number = faker.number().numberBetween(1,9);
-    public AddressesDTO randomRequestBodyForCreateAddress(){
+    public AddressesDTO randomRequestBodyForCreateAddress(int contactId){
         dto = new AddressesDTO();
         dto.setCity(city);
         dto.setCountry(country);
         dto.setStreet(street);
         dto.setZip(zip);
+        dto.setContactId(contactId);
         return dto;
     }
 
@@ -54,9 +53,10 @@ public class AddressAPI extends ApiBase {
         return dto;
     }
 
-    public Response createAddress(int code){
-        response = postRequest(ENDPOINT, code, randomRequestBodyForCreateAddress());
-        response.as(AddressesDTO.class);
+    public Response createAddress(int code, int contactId){
+        Object body = randomRequestBodyForCreateAddress( contactId);
+        response = postRequest(ENDPOINT, code, body);
+     //   response.as(AddressesDTO.class);
         return response;
     }
 
@@ -70,8 +70,13 @@ public class AddressAPI extends ApiBase {
         return response;
     }
 
-    public Response getContact (int code, int id){
-        response = getRequestWithParam(ENDPOINT + "/{contactId}", code, "contactId", id);
+    public Response getAddress (int code, int id){
+        response = getRequestWithParam(ENDPOINT + "/{id}", code, "id", id);
+        return response;
+    }
+
+    public Response getAllAddress (int code, int id){
+        response = getRequestWithParam(ENDPOINT + "/{contactId}/all", code, "contactId", id);
         return response;
     }
 }

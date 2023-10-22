@@ -63,9 +63,10 @@ public class ApiBase {
                 .spec(spec)
                 .body(body)
                 .when()
-                .log().all()
+                    .log().all()
                 .put(endPoint)
-                .then().log().all()
+                .then()
+                     .log().all()
                 .extract().response();
         response.then().assertThat().statusCode(responseCode);
         return response;
