@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,10 @@ public class ContactsPage extends Header {
     public void waitForLoading(){
         getWait().forVisibility(contactsListElement);
         getWait().forVisibility(searchInputField);
+    }
+
+    public void openContactByContactId(int contactId) {
+        driver.findElement(By.xpath("//*[@ng-reflect-router-link='/contacts/"+contactId+"']")).click();
     }
 
     public String readValueFromNewContact(){

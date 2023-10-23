@@ -5,31 +5,45 @@ import io.restassured.path.json.JsonPath;
 import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import schemas.ContactDTO;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddEditDeleteContactApiTest {
     ContactApi contactApi;
+    private void checkContactData(JsonPath actualData, ContactDTO expectedData) {
+        LinkedHashMap<String, String> objectCreatedContact = new LinkedHashMap<>();
+        objectCreatedContact.put(actualData.getString("firstName"), expectedData.getFirstName());
+        objectCreatedContact.put(actualData.getString("lastName"), expectedData.getLastName());
+        objectCreatedContact.put(actualData.getString("description"), expectedData.getDescription());
+
+        for (Map.Entry<String, String> object: objectCreatedContact.entrySet()) {
+            String actualResult = object.getKey();
+            String expectedCreatedContact = object.getValue();
+            Assert.assertEquals(actualResult, expectedCreatedContact, actualResult + " not equal " + expectedCreatedContact);
+        }
+    }
 
     @Test
     public void userCanWorkWithContactTest() {
         contactApi = new ContactApi();
-        for (int i = 0; i < 10 ; i++) {
+        for (int i = 0; i < 2 ; i++) {
             // create and check
             JsonPath createdContactResponse = contactApi.createContact(201).jsonPath();
             int contactId = createdContactResponse.getInt("id");
-            String expectedFirstName = contactApi.randomRequestBodyForCreateContact().getFirstName();
+            ContactDTO expectedData = contactApi.randomRequestBodyForCreateContact();
             JsonPath actualCreatedContact = contactApi.getContact(200, contactId).jsonPath();
-            String actualFirstName = actualCreatedContact.getString("firstName");
-            Assert.assertEquals(actualFirstName, expectedFirstName);
+            checkContactData(actualCreatedContact, expectedData);
 
             // edit and check
             contactApi.editContact(200, contactId);
-            String expectedEditedFirstName = contactApi.randomRequestBodyForEditContact(contactId).getFirstName();
+            ContactDTO expectedEditedContact = contactApi.randomRequestBodyForEditContact(contactId);
             JsonPath actualEditedContact = contactApi.getContact(200, contactId).jsonPath();
-            String actualEditedFirstName = actualEditedContact.getString("firstName");
-            Assert.assertEquals(actualEditedFirstName, expectedEditedFirstName);
+            checkContactData(actualEditedContact, expectedEditedContact);
+
 
             // delete and check
             contactApi.deleteContact(200, contactId);

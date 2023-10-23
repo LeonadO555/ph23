@@ -37,13 +37,15 @@ public class ContactApi extends ApiBase {
     }
 
     public Response createContact(int code){
-        response = postRequest(ENDPOINT, code, randomRequestBodyForCreateContact());
+        ContactDTO body = randomRequestBodyForCreateContact();
+        response = postRequest(ENDPOINT, code, body);
         response.as(ContactDTO.class);
         return response;
     }
 
     public void editContact(int code, int id) {
-        putRequest(ENDPOINT, code, randomRequestBodyForEditContact(id));
+        ContactDTO body = randomRequestBodyForEditContact(id);
+        putRequest(ENDPOINT, code, body);
     }
 
     public Response deleteContact(int code, int id) {
