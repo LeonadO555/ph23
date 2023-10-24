@@ -59,6 +59,8 @@ public class ContactsPage extends Header {
         return noResultMessage.isDisplayed();
     }
 
+
+    // динамический локатор
     public void openContactByContactId(int contactId){
         driver.findElement(By.xpath("//*[@ng-reflect-router-link='/contacts/" + contactId + "']")).click();
     }

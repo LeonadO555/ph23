@@ -6,7 +6,6 @@ import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import schemas.AddressesDTO;
-import schemas.ContactDTO;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
