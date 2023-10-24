@@ -7,6 +7,7 @@ import schemas.ContactDTO;
 public class ContactApi extends ApiBase {
 
     String ENDPOINT = "/api/contact";
+    String param = "/{id}";
     ContactDTO dto;
 
     Response response;
@@ -39,22 +40,24 @@ public class ContactApi extends ApiBase {
     }
 
     public Response createContact(int code){
-        response = postRequest(ENDPOINT, code, randomRequestBodyForCreateContact());
+        ContactDTO body = randomRequestBodyForCreateContact();
+        response = postRequest(ENDPOINT, code, body);
         response.as(ContactDTO.class);
         return response;
     }
 
     public void editContact(int code, int id){
-        putRequest(ENDPOINT, code, randomRequestBodyForEditContact(id));
+        ContactDTO body = randomRequestBodyForEditContact(id);
+        putRequest(ENDPOINT, code, body);
     }
 
     public Response deleteContact (int code, int id){
-         response = deleteRequest(ENDPOINT + "/{id}", code, id);
+         response = deleteRequest(ENDPOINT + param, code, id);
          return response;
     }
 
     public Response getContact (int code, int id){
-        response = getRequestWithParam(ENDPOINT + "/{id}", code, "id", id);
+        response = getRequestWithParam(ENDPOINT + param, code, "id", id);
         return response;
     }
 }

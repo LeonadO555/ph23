@@ -5,7 +5,7 @@ import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AddAddressApiTest {
+public class AddAddressApiTest_1 {
     ContactApi contactApi;
     AddressAPI addressAPI;
 

@@ -27,8 +27,8 @@ public class AddAddressApiTest_2 {
         //check after create address
         JsonPath allAddresses = addressAPI.getAllAddress(200, contactId).jsonPath();
         int addressId = allAddresses.getInt("[0].id");
-
         AddressesDTO expectedAddress = addressAPI.randomRequestBodyForCreateAddress(addressId);
+
         LinkedHashMap<String, String>objectAddresses = new LinkedHashMap<>();
         objectAddresses.put(allAddresses.getString("[0].city"), expectedAddress.getCity());
         objectAddresses.put(allAddresses.getString("[0].country"), expectedAddress.getCountry());
@@ -69,4 +69,6 @@ public class AddAddressApiTest_2 {
         Assert.assertEquals(responseFromDelete, expectedMessageAfterDelete);
     }
 }
+
+
 

@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,4 +59,7 @@ public class ContactsPage extends Header {
         return noResultMessage.isDisplayed();
     }
 
+    public void openContactByContactId(int contactId){
+        driver.findElement(By.xpath("//*[@ng-reflect-router-link='/contacts/" + contactId + "']")).click();
+    }
 }

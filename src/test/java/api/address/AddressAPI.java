@@ -8,11 +8,6 @@ import schemas.ContactDTO;
 
 
 public class AddressAPI extends ApiBase {
-    /*
-
-    @JsonProperty("contactId")
-    private int contactId;
-     */
     String ENDPOINT = "/api/address";
     AddressesDTO dto;
 
@@ -30,8 +25,8 @@ public class AddressAPI extends ApiBase {
     String editStreet = faker.address().streetAddress();
     String editZip = faker.address().zipCode();
 
-
     // int number = faker.number().numberBetween(1,9);
+
     public AddressesDTO randomRequestBodyForCreateAddress(int contactId){
         dto = new AddressesDTO();
         dto.setCity(city);
