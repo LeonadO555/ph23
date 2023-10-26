@@ -1,6 +1,6 @@
 package e2e;
 
-import api.address.AddressesApi;
+import api.address.AdressesApi;
 import api.contact.ContactApi;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -8,19 +8,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import schemas.AddressesDTO;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AddAddressContactApiTest {
     ContactApi contactApi;
-    AddressesApi addressesApi;
+    AdressesApi addressesApi;
 
     @Test
     public void userCanAddAddressContactTest() {
         contactApi = new ContactApi();
-        addressesApi = new AddressesApi();
+        addressesApi = new AdressesApi();
 
             JsonPath createdContactResponse = contactApi.createContact(201).jsonPath();
             int contactId = createdContactResponse.getInt("id");
