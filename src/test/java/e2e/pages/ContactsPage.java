@@ -51,7 +51,7 @@ public class ContactsPage extends Header {
         confirmationNewContactLink.click();
     }
 
-    public void deleteContact(){
+    public void clickDeleteContactButton(){
         deleteButton.click();
     }
 

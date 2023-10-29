@@ -4,7 +4,6 @@ import api.ApiBase;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import schemas.AddressesDTO;
-import schemas.ContactDTO;
 
 
 public class AddressAPI extends ApiBase {

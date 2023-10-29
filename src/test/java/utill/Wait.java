@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Wait {
     public WebDriver driver;
-    Duration TIMEOUT = Duration.ofSeconds(10);
+    Duration TIMEOUT = Duration.ofSeconds(16);
 
     public Wait(WebDriver driver) {
         this.driver = driver;

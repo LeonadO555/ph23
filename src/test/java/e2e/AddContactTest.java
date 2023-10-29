@@ -72,7 +72,7 @@ public class AddContactTest extends BaseTest {
         contactsPage.searchContact(changedName + changedLastName); // ищу контакт по изменённому имени + фамилии
         String changedContactNameFromContactsLIst = contactsPage.readValueFromNewContact();
         assertEquals(changedName, changedContactNameFromContactsLIst); // проверяю, совпадает ли имя изменённого контакта с тем, что вышло в результате поиска.
-        contactsPage.deleteContact();
+        contactsPage.clickDeleteContactButton();
 
         removeContactDialog = new RemoveContactDialog(BaseTest.app.driver);
         removeContactDialog.waitForLoading();

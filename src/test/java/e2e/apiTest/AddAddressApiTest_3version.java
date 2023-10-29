@@ -10,7 +10,7 @@ import schemas.AddressesDTO;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class AddAddressApiTest_3 {
+public class AddAddressApiTest_3version {
     ContactApi contactApi;
     AddressAPI addressAPI;
 
@@ -53,14 +53,21 @@ public class AddAddressApiTest_3 {
         AddressesDTO expectedEditedAddress = addressAPI.randomRequestBodyForEditAddress(addressId, contactId);
         checkAddressData(actualAllEditedAddresses, expectedEditedAddress);
 
-        // delete address and contact
-        addressAPI.deleteAddress(200, addressId);
-        contactApi.deleteContact(200, contactId);
 
-        //check after delete
-        String responseFromDelete = contactApi.getContact(500, contactId).jsonPath().getString("message");
-        String expectedMessageAfterDelete = "Error! This contact doesn't exist in our DB";
-        Assert.assertEquals(responseFromDelete, expectedMessageAfterDelete);
+        // delete address
+        addressAPI.deleteAddress(200, addressId);
+        //check after delete contact
+        String responseFromDeleteAddress = addressAPI.getAddress(500, addressId).jsonPath().getString("message");
+        String expectedMessageAfterDeleteAddress = "Error! This address doesn't exist in our DB";
+        Assert.assertEquals(responseFromDeleteAddress, expectedMessageAfterDeleteAddress);
+
+
+        //delete contact
+        contactApi.deleteContact(200, contactId);
+        //check after delete contact
+        String responseFromDeleteContact = contactApi.getContact(500, contactId).jsonPath().getString("message");
+        String expectedMessageAfterDeleteContact = "Error! This contact doesn't exist in our DB";
+        Assert.assertEquals(responseFromDeleteContact, expectedMessageAfterDeleteContact);
     }
 }
 
